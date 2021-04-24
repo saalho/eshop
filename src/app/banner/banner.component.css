@@ -1,0 +1,24 @@
+.head {
+    background-image: url("src/assets/images/placeholder.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	height: 400px;
+	width: 100%;
+}
+h1{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 450%;
+	color: rgba(225,225,225,0.9);
+	text-align: center;
+    font-style: italic;
+	letter-spacing: 3px;
+	
+}
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 200%;
+	color: rgba(225,225,225,0.9);
+	text-align: center;
+	letter-spacing: 3px;
+}

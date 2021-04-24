@@ -1,4 +1,45 @@
-div.navbar{
+ul.navbar{
     font-family: Arial, Helvetica, sans-serif;
-    color: blue;
+    color: white;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: gray;
+    width: 100%;
+}
+ul.sidebar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+li {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+}
+li.browse{
+    float:left;
+}
+li.personal{
+    float:right;
+}
+li.categories{
+    display: block;
+    padding: 14px 16px;
+    display: none;
+}
+li a:hover:not(.active){
+    background-color: pink;
+
+}
+.active {
+    background-color: red;
+}
+a{
+    color: black;
+    text-decoration: none;    
 }

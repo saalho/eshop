@@ -1,6 +1,18 @@
-<div class="navbar">
-    <button id="productlist">=</button>
-    <p>searchbar here</p>
-    <a>Profile</a>
-    <a>Ostoskori</a>
-</div>
+<ul class="navbar">
+   <li class="browse"><button>=</button></li>
+    <li class="browse"><form><input type="search" value="Hae tuotetta"></form></li>
+    <li class="personal"><a>Profile</a></li>
+    <li class="personal"><a>Ostoskori</a></li>
+</ul>
+
+<ul class="sidebar" >
+    <li><a style="font-weight: bold" href="/products">Näytä kaikki</a></li> 
+    <div *ngFor="let category of allCategories">  
+         
+        <li><a (mouseover)="showSubcategories(category)"  href="/products-cat={{category['id']}}">{{category['name']}}</a></li>>
+    </div>
+    <div *ngFor="let subcat of subcategories">
+        <li> <a href="/products-subcat={{subcat['id']}}">{{subcat['scname']}}</a></li>
+    </div>
+
+</ul>
