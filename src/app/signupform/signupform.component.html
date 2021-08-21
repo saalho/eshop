@@ -1,0 +1,29 @@
+
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
+    <label>
+        Etunimi*
+        <input type="text" formControlName="firstName" required>
+    </label>
+    <br/>
+    <label>
+        Sukunimi*
+        <input type="text" formControlName="lastName" required>
+    </label>
+    <br/>
+    <label>
+        Sähköposti*
+        <input type="email" formControlName="email" required>
+    </label>
+    <br/>
+    <label>
+        Profiilikuva
+        <input type="file" formControlName="profilePic">
+    </label>
+    <br/>
+    <label>
+        Salasana*
+        <input type="password" formControlName="password" required>
+    </label>
+    <br/>
+    <button type="submit" [disabled]="!signupForm.valid">OK</button>
+</form>

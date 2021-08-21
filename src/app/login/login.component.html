@@ -1,0 +1,14 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <p id="loginmessage">{{loginMessage}}</p>
+    <label>
+        Sähköposti
+        <input type="email" formControlName="email" required>
+    </label>
+    <label>
+        Salasana
+        <input type="password" formControlName="password" required>
+    </label>
+    <button type="submit" [disabled]="!loginForm.valid">Kirjaudu sisään</button>
+</form>
+<p>Eikö ole käyttäjätunnusta? Rekisteröidy alla olevasta linkistä!</p>
+<a href="/rekisteroidy">Rekisteröidy</a>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NavbarComponent} from '../navbar/navbar.component';
+import { FormGroup,FormControl, Validators} from '@angular/forms';
+import {CategoriesService} from '../services/categories.service';
+import {NoticeService} from '../services/notice.service';
 
 @Component({
   selector: 'app-addnoticeform',
@@ -7,27 +9,51 @@ import {NavbarComponent} from '../navbar/navbar.component';
   styleUrls: ['./addnoticeform.component.css']
 })
 export class AddnoticeformComponent implements OnInit {
-  categories = [];
-  subcategories = [];
+  allCategories = [];
+  subcategories:any;
 
-  constructor(private nav : NavbarComponent) { }
+  noticeForm = new FormGroup({
+    header: new FormControl,
+    description: new FormControl,
+    category: new FormControl,
+    subcategory: new FormControl,
+    price: new FormControl,
+    userid: new FormControl
+  })
+  constructor(private categories : CategoriesService, private notice : NoticeService) { }
 
   ngOnInit(): void {
+     this.categories.getCategories().subscribe(cat => {
+      this.allCategories = cat; 
+      console.log(cat);
+      console.log(this.allCategories)
+  })
   }
- /* categoryClick(){
-    this.nav.showSubcategories(var chosenCat);
-    this.subcategories = this.nav.subcategories; 
-  }*/
 
+  showSubCat(chosenCat: any){
+    this.categories.getSubcategories(chosenCat).subscribe(cat => {
+      this.subcategories = cat;
+      console.log(cat);
+      
+    }); 
+    console.log(this.subcategories);
+  }
+
+  onSubmit(formdata:any){
+    console.log(formdata)
+    this.notice.noticePublish(formdata).subscribe(data => {
+      if (data.ok) console.log("Successful!");
+      else {
+        console.log("Something went wrong :(");
+      }
+  })
 }
-
-class Notice {
-  constructor(
-    public id: number,
-    public header: string,
-    public pictures: ImageBitmap,
-    public description: string,
-    public category: string,
-    public subcategory?: string
-  ){}
+  saveDraft(formdata:any){
+    this.notice.noticeSaveDraft(formdata).subscribe(data => {
+      if (data.ok) console.log("Successful!");
+      else {
+        console.log("Something went wrong :(");
+      }
+    })
+  }
 }

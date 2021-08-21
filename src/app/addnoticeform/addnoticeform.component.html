@@ -1,1 +1,38 @@
+<form [formGroup]="noticeForm">
+    <label>
+        Otsikko
+        <input type="text" formControlName="header" required> 
+    </label>
+    <br>
+    <label>
+        Lyhyt kuvaus (maks. 200 merkkiä)
+        <input type="text" formControlName="description" required>
+    </label>
+    <br>
+    <label >
+        Tuotekategoria
+        <select formControlName="category">
+            <option *ngFor="let cat of allCategories" (click)=showSubCat(cat) value="{{cat['id']}}">{{cat['name']}}</option>
+        </select>
+    </label>
+    <br>
+    <label>
+        Alakategoria (ei pakollinen)
+        <select formControlName="subcategory">
+        <option value="null">--</option>
+        <option *ngFor="let subcat of subcategories" value="{{subcat['id']}}">{{subcat['scname']}}</option>
+        </select>
+    </label>
+    <br>
+    <label>
+        Hinta (€)
+        <input type="number" formControlName="price">
+    </label>
+    <br>
+    <label> usrid
+        <input type="number" formControlName="userid">
+    </label>
+    <button class="save" (click)="saveDraft(noticeForm.value)">Tallenna luonnos</button>
+    <button type="submit" (click)="onSubmit(noticeForm.value)">Julkaise</button>
 
+</form>

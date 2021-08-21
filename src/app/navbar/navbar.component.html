@@ -1,18 +1,30 @@
 <ul class="navbar">
-   <li class="browse"><button>=</button></li>
-    <li class="browse"><form><input type="search" value="Hae tuotetta"></form></li>
-    <li class="personal"><a>Profile</a></li>
+   <li class="browse" ><button (click)="openNav()">=</button></li>
+    <li class="browse"><form><input type="search" placeholder="Hae tuotetta"></form></li>
+    <li class="personal"><button mat-button [matMenuTriggerFor]="menu">Käyttäjä</button></li>
+       
     <li class="personal"><a>Ostoskori</a></li>
-</ul>
 
-<ul class="sidebar" >
-    <li><a style="font-weight: bold" href="/products">Näytä kaikki</a></li> 
-    <div *ngFor="let category of allCategories">  
-         
-        <li><a (mouseover)="showSubcategories(category)"  href="/products-cat={{category['id']}}">{{category['name']}}</a></li>>
+
+</ul> 
+<mat-menu #menu="matMenu">
+<button mat-menu-item><a href="/rekisteroidy">Rekisteröidy</a></button>
+<button mat-menu-item ><a href="/kirjaudu">Kirjaudu Sisään</a></button>
+</mat-menu>
+
+<div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+      <a style="font-weight: bold" href="/products">Näytä kaikki</a>
+      <div *ngFor="let category of allCategories">        
+        <a (mouseover)="showSubcategories(category)"  href="/products-cat={{category['id']}}">{{category['name']}}</a>
     </div>
     <div *ngFor="let subcat of subcategories">
-        <li> <a href="/products-subcat={{subcat['id']}}">{{subcat['scname']}}</a></li>
+        <a href="/products-subcat={{subcat['id']}}">{{subcat['scname']}}</a>
     </div>
+</div>
+    
+<div id="main">
+      <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776; open</span>
+      <app-notice></app-notice>
+</div>
 
-</ul>

@@ -1,0 +1,8 @@
+<div class="notice" *ngFor="let notice of allNotices">
+    <h3 class="header">{{notice['header']}}</h3>
+    <h4 class="description">{{notice['description']}}</h4>
+    <p class="user">Ilmoittaja: {{notice['name']}}</p>
+    <p class="price">Hinta: {{notice['price']}}€</p>
+    <p class="created">Ilmoitus luotu: {{notice['created']}}</p>
+    <br><br>
+</div>

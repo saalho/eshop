@@ -8,7 +8,7 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) { }
     getCategories(){
-      return this.http.get<any>('api/getcategories')
+      return this.http.get<any>('api/getcategories');
     }
     getSubcategories(cat:any){
       let postBody = {"id" : cat.id}
