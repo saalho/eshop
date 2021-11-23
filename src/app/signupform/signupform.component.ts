@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators} from '@angular/forms';
 import { UserService } from '../services/user.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signupform',
@@ -12,11 +13,10 @@ export class SignupformComponent implements OnInit {
     firstName: new FormControl(''),
     lastName : new FormControl(''),
     email : new FormControl(''),
-    profilePic : new FormControl(''),
     password: new FormControl(''),
   })
 
-  constructor(private usr: UserService) { }
+  constructor(private usr: UserService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +24,7 @@ export class SignupformComponent implements OnInit {
     this.usr.addUser(formdata).subscribe(data => { 
       console.log(data);
     })
+    this.router.navigate(["kirjaudu"]);
   }
 }
 
@@ -33,8 +34,7 @@ class Profile {
     public firstname : string,
     public lastname: string,
     public email : string,
-    public password : string,
-    public profilepicture : ImageBitmap
+    public password : string
   ){}
   }
 

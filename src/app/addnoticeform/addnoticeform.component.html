@@ -12,15 +12,7 @@
     <label >
         Tuotekategoria
         <select formControlName="category">
-            <option *ngFor="let cat of allCategories" (click)=showSubCat(cat) value="{{cat['id']}}">{{cat['name']}}</option>
-        </select>
-    </label>
-    <br>
-    <label>
-        Alakategoria (ei pakollinen)
-        <select formControlName="subcategory">
-        <option value="null">--</option>
-        <option *ngFor="let subcat of subcategories" value="{{subcat['id']}}">{{subcat['scname']}}</option>
+            <option *ngFor="let cat of allCategories" value="{{cat['id']}}">{{cat['name']}}</option>
         </select>
     </label>
     <br>

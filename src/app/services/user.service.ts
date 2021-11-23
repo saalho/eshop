@@ -9,7 +9,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   addUser(user:any){
     let postBody = {"firstname" : user.firstName, "lastname": user.lastName, "email": user.email, "password": user.password};
-    return this.http.post('api/adduser', postBody);
+    return this.http.post('api/register', postBody);
   }
   checkCredentials(user:any){
     let postBody = {"email": user.email, "password": user.password};

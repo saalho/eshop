@@ -21,9 +21,10 @@ app.listen(port,() => {
 
 app.get('/test', myquery.get_test);
 app.get('/getcategories', myquery.get_categories);
-app.post('/getsubcategories', myquery.get_subcategories);
 app.post('/register', myquery.signup);
 app.post('/login', myquery.login);
-app.get('/checklogin', myquery.isLoggedIn);
+app.post('/checklogin', myquery.isLoggedIn);
 app.post('/addnotice', myquery.addNotice);
 app.get('/getnotices', myquery.getNotices);
+app.post('/getnoticesbyid', myquery.getNoticesById);
+app.post('/search', myquery.search);

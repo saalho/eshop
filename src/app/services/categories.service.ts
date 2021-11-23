@@ -10,8 +10,4 @@ export class CategoriesService {
     getCategories(){
       return this.http.get<any>('api/getcategories');
     }
-    getSubcategories(cat:any){
-      let postBody = {"id" : cat.id}
-      return this.http.post('api/getsubcategories', postBody);
-    }
 }

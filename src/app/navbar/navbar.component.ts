@@ -10,7 +10,6 @@ import {MatSidenavModule} from '@angular/material/sidenav'
 })
 export class NavbarComponent implements OnInit {
   allCategories = [];
-  subcategories:any;
   selectedCat:any;
   
   constructor(private categories: CategoriesService) { }
@@ -21,15 +20,7 @@ export class NavbarComponent implements OnInit {
       console.log(cat);
   })
 }
- showSubcategories(chosenCat:any){
-    this.categories.getSubcategories(chosenCat).subscribe(cat => {
-      this.subcategories = cat;
-      console.log(cat);
-      this.selectedCat = chosenCat;
-      
-    }); 
-    console.log(this.subcategories);
-  }
+ 
   openNav() {
     document.getElementById("mySidenav")!.style.width = "250px";
     document.getElementById("main")!.style.marginLeft = "250px";

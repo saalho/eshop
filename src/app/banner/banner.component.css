@@ -3,7 +3,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	height: 400px;
+	height: 300px;
 	width: 100%;
 }
 h1{
@@ -13,6 +13,7 @@ h1{
 	text-align: center;
     font-style: italic;
 	letter-spacing: 3px;
+	padding-top: 100px;
 	
 }
 h2{
@@ -21,4 +22,5 @@ h2{
 	color: rgba(225,225,225,0.9);
 	text-align: center;
 	letter-spacing: 3px;
+	text-shadow: 2px 2px black;
 }

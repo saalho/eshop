@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {CategoriesService} from '../services/categories.service';
 import {NoticeService} from '../services/notice.service';
 
@@ -10,17 +11,16 @@ import {NoticeService} from '../services/notice.service';
 })
 export class AddnoticeformComponent implements OnInit {
   allCategories = [];
-  subcategories:any;
 
   noticeForm = new FormGroup({
     header: new FormControl,
     description: new FormControl,
     category: new FormControl,
-    subcategory: new FormControl,
     price: new FormControl,
+    //TODO: get userid from session data
     userid: new FormControl
   })
-  constructor(private categories : CategoriesService, private notice : NoticeService) { }
+  constructor(private categories : CategoriesService, private notice : NoticeService, private router:Router) { }
 
   ngOnInit(): void {
      this.categories.getCategories().subscribe(cat => {
@@ -30,19 +30,16 @@ export class AddnoticeformComponent implements OnInit {
   })
   }
 
-  showSubCat(chosenCat: any){
-    this.categories.getSubcategories(chosenCat).subscribe(cat => {
-      this.subcategories = cat;
-      console.log(cat);
-      
-    }); 
-    console.log(this.subcategories);
-  }
+  
 
   onSubmit(formdata:any){
-    console.log(formdata)
+
+    console.log(formdata);
     this.notice.noticePublish(formdata).subscribe(data => {
-      if (data.ok) console.log("Successful!");
+      if (data.ok){
+        console.log("Successful!");
+        this.router.navigate(["etusivu"]);
+      } 
       else {
         console.log("Something went wrong :(");
       }
@@ -50,7 +47,10 @@ export class AddnoticeformComponent implements OnInit {
 }
   saveDraft(formdata:any){
     this.notice.noticeSaveDraft(formdata).subscribe(data => {
-      if (data.ok) console.log("Successful!");
+      if (data.ok) {
+        console.log("Successful!");
+        this.router.navigate(["etusivu"]);
+      }
       else {
         console.log("Something went wrong :(");
       }

@@ -17,15 +17,7 @@ exports.get_categories = function (req, res, next) {
         console.log("Query executed");
     })
 }
-exports.get_subcategories = function(req, res, next){
-    console.log("Query to get subcategories called");
-    const catId = req.body.id;
-    db.query("SELECT * FROM subcategories where cat_id = " +catId+ ";", (err, result, fields) => {
-        if (err) throw err;
-        res.json(result);
-        console.log("Query executed")
-    })
-}
+
 // For creating a user
 exports.signup = function(req, res, next){
     console.log("Query to add new user");
@@ -67,12 +59,11 @@ exports.addNotice = function(req, res, next){
     const header = req.body.header;
     const description = req.body.description;
     const category = req.body.category;
-    const subcategory = req.body.subcategory;
     const price = req.body.price;
     const userid = req.body.userid;
     const published = req.body.published;
     console.log("Query to add notice");
-    db.query("INSERT INTO notices (header, description, cat_id, subcat_id, price, published, user_id) VALUES (?,?,?,?,?,?,?);",[header,description,category,subcategory,price,published,userid], (err) =>{
+    db.query("INSERT INTO notices (header, description, cat_id, price, published, user_id) VALUES (?,?,?,?,?,?);",[header,description,category,price,published,userid], (err) =>{
         if (err) throw err;
         else res.status(200).send();
     })
@@ -85,7 +76,21 @@ exports.getNotices = function(req,res,next){
         console.log("Query executed");
     })
 }
+exports.getNoticesById = function(req,res,next){
+    const catId = req.body.id;
+    console.log(catId);
+    db.query("SELECT notices.id AS id, notices.header AS header, notices.description AS description, notices.price AS price, user.firstname AS name, notices.created AS created FROM notices INNER JOIN user ON notices.user_id=user.id WHERE notices.published=1 AND notices.cat_id="+catId+";", (err, result, fields) =>{ 
+        if (err) throw err;
+        res.json(result);
+        console.log("Query executed");
+    })
+}
+
 exports.isLoggedIn = function(req, res, next){
-    var user = JSON.parse(sessionStorage.getItem(user)) || [];
-     
+    var user = JSON.parse(sessionStorage.getItem("loggedUser")) || [];
+     //TODO: verify login through database, log user out automatically after set time
+}
+
+exports.search = function(req,res,next){
+    //TODO
 }

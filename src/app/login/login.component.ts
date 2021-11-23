@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators} from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { UserService } from '../services/user.service'
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   })
-  constructor(private usr : UserService, private http : HttpClient) { }
+  constructor(private usr : UserService, private http : HttpClient, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,9 +25,9 @@ export class LoginComponent implements OnInit {
         this.loginMessage = "Sähköposti tai salasana on väärä";
       }
       else if (data.status == 200){
-        this.loginMessage = "Kirjautuminen ok"
+        this.loginMessage = "Kirjautuminen ok";
         sessionStorage.setItem('loggedUser', JSON.stringify(data) );
-       // window.sessionStorage()
+        this.router.navigate(["etusivu"]);
       }
     })
   }
